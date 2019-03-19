@@ -90,13 +90,16 @@
             break;
     }
 
-    // check if the video can be saved to photo album before going further
-    if (saveToPhotoAlbum && !UIVideoAtPathIsCompatibleWithSavedPhotosAlbum([inputFileURL path]))
-    {
-        NSString *error = @"Video cannot be saved to photo album";
-        [self.commandDelegate sendPluginResult:[CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:error ] callbackId:command.callbackId];
-        return;
-    }
+    // BF - Commented out because method checks original video. We use a copied version though...
+    /**
+    * // check if the video can be saved to photo album before going further
+    * if (saveToPhotoAlbum && !UIVideoAtPathIsCompatibleWithSavedPhotosAlbum([inputFileURL path]))
+    * {
+    *     NSString *error = @"Video cannot be saved to photo album";
+    *     [self.commandDelegate sendPluginResult:[CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:error ] callbackId:command.callbackId];
+    *     return;
+    * }
+    */
 
     AVURLAsset *avAsset = [AVURLAsset URLAssetWithURL:inputFileURL options:nil];
 
